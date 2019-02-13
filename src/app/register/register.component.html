@@ -1,9 +1,8 @@
 <div class="login-page">
   <div class="form">
-    <form [formGroup]="registerForm" class="login-form" (ngSubmit)="onLogin()">
-      <input type="text" placeholder="name"/>
-      <input type="password" placeholder="password"/>
-      <input type="text" placeholder="email address"/>
+    <form [formGroup]="registerForm" class="login-form" (ngSubmit)="onRegister()">
+      <input type="text" placeholder="email address" formControlName="email"/>
+      <input type="password" placeholder="password" formControlName="password"/>
       <button>create</button>
       <p class="message">Already registered? <a routerLink="/login" routerLinkActive="active">Sign In</a></p>
     </form>

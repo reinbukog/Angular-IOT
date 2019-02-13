@@ -8,10 +8,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MonitorComponent } from './monitor/monitor.component';
 import { RouterModule, Routes } from '@angular/router';
 
-import '../styles/font-awesome/font-awesome.min.css';
-import '../styles/bootstrap/bootstrap.min.css';
-import '../styles/animate/animate.min.css';
 import { RegisterComponent } from './register/register.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AuthGuard } from './services/guards/auth.guard';
+
+import { environment } from '../environments/environment';
+import { HeaderComponent } from './header/header.component';
+import { NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal/modal.component';
+import { FormsModule } from '@angular/forms';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = <Routes>[
   {
@@ -24,7 +32,8 @@ const routes: Routes = <Routes>[
   },
   {
     path: 'monitor',
-    component: MonitorComponent
+    component: MonitorComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -34,16 +43,27 @@ const routes: Routes = <Routes>[
     AppComponent,
     LoginComponent,
     MonitorComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
     //AppRoutingModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    NgbModalModule,
+    FormsModule,
+    NgbModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true }
+      { enableTracing: false }
     )
+  ],
+  entryComponents: [
+    ModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
