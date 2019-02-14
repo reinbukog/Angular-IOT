@@ -22,13 +22,16 @@ export class FirebaseService {
   ) {}
 
   getData(dataParamPath: string): Observable<any>{
-    this.books = this.db.object(dataParamPath).valueChanges();
-    return this.books;
+    return this.db.object(dataParamPath).valueChanges();
   }
 
   saveData(reference: string, value: {}) {
     const dbRef = this.db.object(reference);
-    dbRef.set(value);
+    dbRef.update(value);
+  }
+
+  logout(): Promise<any>  {
+    return this.auth.auth.signOut()
   }
 
   registerUser(email: string, password: string): Promise<any> {

@@ -17,16 +17,8 @@
     <div>
       <form [formGroup]="settingsForm">
         <div class="form-group">
-          <label>pH: </label>
-          <input type="text" placeholder="ph" formControlName="ph"/>
-        </div>
-        <div class="form-group">
-          <label>water level: </label>
-          <input type="text" placeholder="level" formControlName="level"/>
-        </div>
-        <div class="form-group">
-          <label>temperature: </label>
-          <input type="text" placeholder="temperature" formControlName="temperature"/>
+          <label>refresh time: </label>
+          <input type="text" formControlName="refresh"/>
         </div>
       </form>
     </div>
@@ -49,7 +41,7 @@
       <li>Another super feature</li>
       <li>And more...</li>
     </ul>
-    <button>Sign up</button>
+    <!--<button>Sign up</button>-->
   </div>
   <div class="promo scale">
     <div class="deal">
@@ -62,7 +54,7 @@
       <li>Another super feature</li>
       <li>And more...</li>
     </ul>
-    <button>Sign up</button>
+    <button (click)="open(settingsModal)">Settings</button>
   </div>
   <div class="promo">
     <div class="deal">
@@ -75,6 +67,6 @@
       <li>We need moneyy</li>
       <li>And more...</li>
     </ul>
-    <button (click)="open(settingsModal)">Sign up</button>
+    <!--<button (click)="open(settingsModal)">Settings</button>-->
   </div>
 </div>

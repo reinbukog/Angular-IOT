@@ -1,13 +1,12 @@
-<header>
-  <h1 id="logo">My Logo</h1>
+<header *ngIf="showHeader">
+  <h1 id="logo">Pond Monitoring System</h1>
   <nav>
     <ul>
       <li></li>
       <li></li>
       <li></li>
       <li></li>
-      <li>Settings</li>
-      <li>Logout</li>
+      <li (click)="onLogout()"><a style="cursor: pointer;">Logout</a></li>
     </ul>
   </nav>
 </header>

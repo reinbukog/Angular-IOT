@@ -11,7 +11,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MonitorComponent implements OnInit {
 
-  private modalTitle: string = 'this is title';
+  private modalTitle: string = 'Set the refresh cycle';
   private modalRef;
   private settingsForm;
   private results: Observable<any>;
@@ -26,9 +26,7 @@ export class MonitorComponent implements OnInit {
     this.results = this.firebaseService.getData('sensor/result');
 
     this.settingsForm = this.formBuilder.group({
-      ph: this.formBuilder.control(''),
-      temperature: this.formBuilder.control(''),
-      level: this.formBuilder.control('')
+      refresh: this.formBuilder.control('')
     });
   }
 
@@ -40,11 +38,9 @@ export class MonitorComponent implements OnInit {
     this.modalRef.close();
 
     let refreshObject = {
-      'level': this.settingsForm.controls['level'].value,
-      'ph': this.settingsForm.controls['ph'].value,
-      'temp': this.settingsForm.controls['temperature'].value
+      'refresh': this.settingsForm.controls['refresh'].value
     };
 
-    this.firebaseService.saveData('sensor/refreshTime', refreshObject);
+    this.firebaseService.saveData('sensor', refreshObject);
   }
 }
